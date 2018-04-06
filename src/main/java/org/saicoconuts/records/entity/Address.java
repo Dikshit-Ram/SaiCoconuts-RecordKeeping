@@ -1,36 +1,38 @@
 package org.saicoconuts.records.entity;
 
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
 
 @Component
 @Data
 @Entity
-@Table(name = "Address")
+@Table
 public class Address {
 
     @Id
     private UUID addressId;
 
-    @Column(name = "line1")
+    @Column
     private String line1;
 
-    @Column(name = "line2")
+    @Column
     private String line2;
 
-    @Column(name = "city")
+    @Column
     private String city;
 
-    @Column(name = "state")
+    @Column
     private String state;
 
-    @Column(name = "zipcode")
+    @Column
     private int zipcode;
 
     public Address() {

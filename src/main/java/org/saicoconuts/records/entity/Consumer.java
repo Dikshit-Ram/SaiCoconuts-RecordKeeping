@@ -1,28 +1,38 @@
 package org.saicoconuts.records.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+
+@Data
 @Entity
-@Table(name = "consumer")
+@Table
 @Component
 public class Consumer {
 
     @Id
     private UUID consumerId;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
     @Autowired
     @OneToMany
     private List<Transaction> transactions;
 
-    @Column(name = "debt")
+    @Column
     private Long debt;
 
     @Autowired
