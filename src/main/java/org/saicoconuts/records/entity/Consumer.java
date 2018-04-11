@@ -7,18 +7,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table
 @Component
 public class Consumer {
 
@@ -28,15 +26,15 @@ public class Consumer {
     @Column
     private String name;
 
-    @Autowired
     @OneToMany
+    @JoinColumn(name = "transactionId")
     private List<Transaction> transactions;
 
     @Column
     private Long debt;
 
-    @Autowired
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "addressId")
     private Address address;
 
     public Consumer() {
