@@ -1,26 +1,12 @@
 package org.saicoconuts.records.entity;
 
-import java.sql.Date;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKey;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.MapKeyEnumerated;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
+import javax.persistence.*;
+import java.sql.Date;
+import java.util.Map;
+import java.util.UUID;
 
 @Component
 @Data
@@ -28,7 +14,7 @@ import lombok.Data;
 public class Transaction {
 
     @Id
-    private UUID transactionId;
+    private String transactionId;
     
     @ManyToOne
     private Consumer consumer;
@@ -49,6 +35,6 @@ public class Transaction {
     private String comment;
     
     public Transaction() {
-        transactionId = UUID.randomUUID();
+        transactionId = UUID.randomUUID().toString();
     }
 }
