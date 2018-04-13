@@ -3,8 +3,14 @@ package org.saicoconuts.records.entity;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,6 +36,9 @@ public class Transaction {
     
     @Column(nullable = false)
     private Date transactionDate;
+
+    @OneToMany
+    private List<Payment> payments;
     
     @Column
     private String comment;
