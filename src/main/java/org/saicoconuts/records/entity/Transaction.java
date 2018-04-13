@@ -22,13 +22,13 @@ public class Transaction {
     @ElementCollection
     private Map<String, Integer> coconuts;
     
-    @Column
+    @Column(nullable = false)
     private Long sale;
     
-    @Column
+    @Column(nullable = false)
     private Long paid;
     
-    @Column
+    @Column(nullable = false)
     private Date transactionDate;
     
     @Column

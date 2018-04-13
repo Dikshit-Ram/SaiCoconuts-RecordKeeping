@@ -16,7 +16,7 @@ public class Address {
     @Id
     private String addressId;
 
-    @Column
+    @Column(nullable = false)
     private String line1;
 
     @Column
@@ -29,7 +29,7 @@ public class Address {
     private String state;
 
     @Column
-    private int zipcode;
+    private Integer zipcode;
 
     public Address() {
         addressId = UUID.randomUUID().toString();

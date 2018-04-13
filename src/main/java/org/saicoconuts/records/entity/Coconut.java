@@ -1,14 +1,11 @@
 package org.saicoconuts.records.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Component
 @Data
@@ -18,6 +15,9 @@ public class Coconut {
     @Id
     private String type;
     
-    @Column
-    private float cost;
+    @Column(nullable = false)
+    private Float cost;
+
+    @Column(nullable = false)
+    private Long stock;
 }

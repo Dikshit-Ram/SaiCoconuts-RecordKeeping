@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 public class ConsumerBOImpl implements ConsumerBO {
@@ -22,11 +21,6 @@ public class ConsumerBOImpl implements ConsumerBO {
     @Override
     public List<Consumer> getAllConsumers(){
         return consumerRepository.findAll();
-    }
-
-    @Override
-    public List<Consumer> getConsumersById(List<UUID> consumerIds) {
-        return consumerRepository.findAllById(consumerIds);
     }
 
     @Override

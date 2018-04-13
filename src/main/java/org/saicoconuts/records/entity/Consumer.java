@@ -15,7 +15,7 @@ public class Consumer {
     @Id
     private String consumerId;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @OneToMany
