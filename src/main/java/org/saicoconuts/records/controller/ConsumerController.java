@@ -5,11 +5,7 @@ import org.saicoconuts.records.entity.Consumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
+@RequestMapping(value = "/consumer")
 public class ConsumerController {
 
     private ConsumerBO consumerBO;
@@ -28,12 +25,12 @@ public class ConsumerController {
         this.consumerBO = consumerBO;
     }
 
-    @RequestMapping(value = "/consumer", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getConsumers() {
         return new ResponseEntity<>(consumerBO.getAllConsumers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/consumer/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ResponseEntity<?> getConsumerByName(@PathVariable("name") String name, @RequestBody List<String> names) {
         if(name != null && !name.isEmpty())
             return new ResponseEntity<>(consumerBO.getConsumersByName(Collections.singletonList(name)), HttpStatus.OK);
@@ -42,7 +39,7 @@ public class ConsumerController {
         return new ResponseEntity<>(consumerBO.getAllConsumers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/consumer", method = PUT)
+    @RequestMapping(method = PUT)
     public ResponseEntity<?> saveConsumer(@RequestBody Set<Consumer> consumers) {
         if(consumerBO.saveOrUpdateConsumer(consumers)) {
             return ResponseEntity.ok().build();
@@ -50,7 +47,7 @@ public class ConsumerController {
         return ResponseEntity.badRequest().build();
     }
 
-    @RequestMapping(value = "/consumer", method = DELETE)
+    @RequestMapping(method = DELETE)
     public ResponseEntity<?> deleteConsumer(@RequestBody Set<Consumer> consumers) {
         if(consumerBO.deleteConsumers(consumers)) {
             return ResponseEntity.ok().build();

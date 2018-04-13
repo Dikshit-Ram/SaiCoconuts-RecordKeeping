@@ -5,17 +5,14 @@ import org.saicoconuts.records.entity.Coconut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
+@RequestMapping(value = "/coconut")
 public class CoconutController {
 
 	private CoconutBO coconutBO;
@@ -25,17 +22,17 @@ public class CoconutController {
 		this.coconutBO = coconutBO;
 	}
 
-	@RequestMapping(value = "/CoconutRates", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getCoconuts() {
 		return new ResponseEntity<>(coconutBO.getAllCoconutRates(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/CoconutRates/{type}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{type}", method = RequestMethod.GET)
 	public ResponseEntity<?> getCoconutRateByType(@PathVariable("type") String type) {
 		return new ResponseEntity<>(coconutBO.getCoconutRateByType(type), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/SetCoconutRates", method = PUT)
+	@RequestMapping(method = PUT)
 	public ResponseEntity<?> setCoconutRates(@RequestBody Set<Coconut> coconutRates) {
 		if(coconutBO.setCoconutRates(coconutRates)) {
 			return ResponseEntity.ok().build();
