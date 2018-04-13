@@ -1,24 +1,20 @@
 package org.saicoconuts.records.entity;
 
-import java.util.UUID;
+import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.springframework.stereotype.Component;
-
-import lombok.Data;
+import java.util.UUID;
 
 @Component
 @Data
 @Entity
-@Table
 public class Address {
 
     @Id
-    private UUID addressId;
+    private String addressId;
 
     @Column
     private String line1;
@@ -36,6 +32,6 @@ public class Address {
     private int zipcode;
 
     public Address() {
-        addressId = UUID.randomUUID();
+        addressId = UUID.randomUUID().toString();
     }
 }

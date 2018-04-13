@@ -4,18 +4,17 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Component
 @Data
-@Table(name = "Inventory")
+@Entity
 public class Inventory {
 
     @Id
-    @Column(name = "coconut")
-    private Coconut coconut;
+    private String coconutType;
 
-    @Column(name = "quantity")
+    @Column
     private int quantity;
 }
