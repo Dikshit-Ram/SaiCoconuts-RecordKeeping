@@ -36,7 +36,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             </dependency>
-
         <!-- Spring data JPA, default tomcat pool, exclude it -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

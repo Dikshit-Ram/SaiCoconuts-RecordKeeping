@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -16,8 +16,8 @@ public class Transaction {
     @Id
     private String transactionId;
     
-    @ManyToOne
-    private Consumer consumer;
+    @Column
+    private String consumer;
 
     @ElementCollection
     private Map<String, Integer> coconuts;
