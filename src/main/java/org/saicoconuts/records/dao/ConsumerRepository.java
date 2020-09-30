@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface ConsumerRepository extends JpaRepository<Consumer, UUID> {
-    List<Consumer> getConsumersByName(List<String> consumerNames);
+    List<Consumer> getConsumersByNameIn(List<String> consumerNames);
 }
