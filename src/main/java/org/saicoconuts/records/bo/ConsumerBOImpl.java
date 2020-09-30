@@ -31,7 +31,7 @@ public class ConsumerBOImpl implements ConsumerBO {
 
     @Override
     public List<Consumer> getConsumersByName(List<String> consumerNames) {
-        return consumerRepository.getConsumersByName(consumerNames);
+        return consumerRepository.getConsumersByNameIn(consumerNames);
     }
 
     @Override
