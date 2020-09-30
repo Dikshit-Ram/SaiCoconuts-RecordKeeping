@@ -3,9 +3,7 @@ package org.saicoconuts.records.entity;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Component
 @Data
@@ -13,7 +11,15 @@ import javax.persistence.Id;
 public class Inventory {
 
     @Id
-    private String coconutType;
+    private String inventoryId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item")
+    private Item item;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type")
+    private Type type;
 
     @Column
     private int quantity;

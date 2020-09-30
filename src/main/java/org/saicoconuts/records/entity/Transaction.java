@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -15,12 +14,18 @@ public class Transaction {
 
     @Id
     private String transactionId;
-    
+
     @ManyToOne
+    @JoinColumn(name = "consumerId")
     private Consumer consumer;
 
-    @ElementCollection
-    private Map<String, Integer> coconuts;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item")
+    private Item item;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type")
+    private Type type;
     
     @Column
     private Long sale;
