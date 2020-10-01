@@ -5,14 +5,14 @@ import org.saicoconuts.records.entity.Consumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/consumer")
@@ -30,13 +30,20 @@ public class ConsumerController {
         return new ResponseEntity<>(consumerBO.getAllConsumers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public ResponseEntity<?> getConsumerByName(@PathVariable("name") String name, @RequestBody List<String> names) {
+    @RequestMapping(value = "/name", method = RequestMethod.GET)
+    public ResponseEntity<?> getConsumersByName(@PathVariable("name") String name, @RequestBody List<String> names) {
         if(name != null && !name.isEmpty())
             return new ResponseEntity<>(consumerBO.getConsumersByName(Collections.singletonList(name)), HttpStatus.OK);
         else if(names != null && names.isEmpty())
             return new ResponseEntity<>(consumerBO.getConsumersByName(names), HttpStatus.OK);
-        return new ResponseEntity<>(consumerBO.getAllConsumers(), HttpStatus.OK);
+        return new ResponseEntity<>(Collections.EMPTY_LIST, HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/id/{ids}", method = RequestMethod.GET)
+    public ResponseEntity<?> getConsumersByIds(@PathVariable List<String> ids) {
+        if(CollectionUtils.isEmpty(ids))
+            return new ResponseEntity<>(Collections.EMPTY_LIST, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(consumerBO.getConsumersById(ids), HttpStatus.OK);
     }
 
     @RequestMapping(method = PUT)

@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ConsumerRepository extends JpaRepository<Consumer, UUID> {
+public interface ConsumerRepository extends JpaRepository<Consumer, String> {
     List<Consumer> getConsumersByNameIn(List<String> names);
 }

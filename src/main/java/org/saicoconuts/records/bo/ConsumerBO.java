@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ConsumerBO {
     List<Consumer> getAllConsumers();
-    List<Consumer> getConsumersById(List<UUID> consumerIds);
+    List<Consumer> getConsumersById(List<String> consumerIds);
     List<Consumer> getConsumersByName(List<String> consumerNames);
     boolean saveOrUpdateConsumer(Set<Consumer> consumers);
     boolean deleteConsumers(Set<Consumer> consumers);
