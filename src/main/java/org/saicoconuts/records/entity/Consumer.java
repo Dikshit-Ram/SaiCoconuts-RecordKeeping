@@ -18,8 +18,7 @@ public class Consumer {
     @Column
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "transactionId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "consumer")
     private List<Transaction> transactions;
 
     @Column
