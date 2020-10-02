@@ -30,13 +30,11 @@ public class ConsumerController {
         return new ResponseEntity<>(consumerBO.getAllConsumers(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/name", method = RequestMethod.GET)
-    public ResponseEntity<?> getConsumersByName(@PathVariable("name") String name, @RequestBody List<String> names) {
-        if(name != null && !name.isEmpty())
-            return new ResponseEntity<>(consumerBO.getConsumersByName(Collections.singletonList(name)), HttpStatus.OK);
-        else if(names != null && names.isEmpty())
-            return new ResponseEntity<>(consumerBO.getConsumersByName(names), HttpStatus.OK);
-        return new ResponseEntity<>(Collections.EMPTY_LIST, HttpStatus.NOT_FOUND);
+    @RequestMapping(value = "/name/{names}", method = RequestMethod.GET)
+    public ResponseEntity<?> getConsumersByName(@PathVariable List<String> names) {
+        if(CollectionUtils.isEmpty(names))
+            return new ResponseEntity<>(Collections.EMPTY_LIST, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(consumerBO.getConsumersByName(names), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/id/{ids}", method = RequestMethod.GET)
