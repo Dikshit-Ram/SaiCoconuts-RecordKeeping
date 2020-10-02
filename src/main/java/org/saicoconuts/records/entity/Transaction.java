@@ -15,7 +15,7 @@ public class Transaction {
     @Id
     private String transactionId;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "consumerId")
     private Consumer consumer;
 

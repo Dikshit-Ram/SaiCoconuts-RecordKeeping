@@ -14,7 +14,7 @@ public class Inventory {
     private String inventoryId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item")
+    @JoinColumn(name = "itemId")
     private Item item;
 
     @OneToOne(cascade = CascadeType.ALL)

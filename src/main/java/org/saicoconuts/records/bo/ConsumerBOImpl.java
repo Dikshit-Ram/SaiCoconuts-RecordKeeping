@@ -25,7 +25,7 @@ public class ConsumerBOImpl implements ConsumerBO {
     }
 
     @Override
-    public List<Consumer> getConsumersById(List<UUID> consumerIds) {
+    public List<Consumer> getConsumersById(List<String> consumerIds) {
         return consumerRepository.findAllById(consumerIds);
     }
 

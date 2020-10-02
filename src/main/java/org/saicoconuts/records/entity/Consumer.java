@@ -18,9 +18,6 @@ public class Consumer {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "consumer")
-    private List<Transaction> transactions;
-
     @Column
     private Long debt;
 
